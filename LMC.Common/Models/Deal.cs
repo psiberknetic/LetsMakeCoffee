@@ -4,9 +4,12 @@ using System.Text;
 
 namespace LMC.Common
 {
-    public class Deal : IHasId<Guid>
+    public class Deal
     {
-        public Guid Id => throw new NotImplementedException();
-        public string Code => throw new NotImplementedException();
+        public string Code { get; }
+        public string Description { get; set; }
+        public DealType Type { get; set; }
+        public decimal Value { get; set; }
+        public decimal MinimumOrder { get; set; }
     }
 }
