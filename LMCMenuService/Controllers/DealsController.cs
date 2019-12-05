@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LMC.Common;
-using LMC.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using LMC.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Web.Http;
+using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace LMC.MenuService.Controllers
 {
@@ -22,16 +20,27 @@ namespace LMC.MenuService.Controllers
 
         // GET: api/Deals
         [HttpGet]
-        public IEnumerable<Deal> Get()
+        public IActionResult Get()
         {
-            return _dealProvider.GetDeals();
+            if (_dealProvider.GetDeals().Any())
+            {
+                return Ok(_dealProvider.GetDeals());
+            }
+
+            return NotFound();
         }
 
         // GET: api/Deals/Super50Friday
         [HttpGet("{code}", Name = "Get")]
-        public Deal Get(string code)
+        public IActionResult Get(string code)
         {
-            return _dealProvider.GetDealByCode(code);
+            var value = _dealProvider.GetDealByCode(code);
+            if (value == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(value);
         }
     }
 }

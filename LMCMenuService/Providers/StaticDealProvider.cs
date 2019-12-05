@@ -15,12 +15,12 @@ namespace LMC.MenuService.Providers
 
         public Deal GetDealByCode(string dealCode)
         {
-            return null;
+            return _deals.FirstOrDefault(d => d.Code == dealCode);
         }
 
         public IEnumerable<Deal> GetDeals()
         {
-            return Enumerable.Empty<Deal>();
+            return _deals;
         }
     }
 }
