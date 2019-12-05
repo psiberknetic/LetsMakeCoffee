@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LMC.Common.Models
+namespace LMC.Common
 {
-    class Order
+    public class Order
     {
     }
 }

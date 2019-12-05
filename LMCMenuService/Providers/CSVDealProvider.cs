@@ -1,20 +1,22 @@
 ﻿using LMC.Common;
 using LMC.Common.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LMC.MenuService.Providers
 {
-    public class DealProvider : IDealProvider
+    public class CSVDealProvider : IDealProvider
     {
         public Deal GetDealByCode(string dealCode)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Deal> GetDeals()
         {
-            return Enumerable.Empty<Deal>();
+            throw new NotImplementedException();
         }
     }
 }
