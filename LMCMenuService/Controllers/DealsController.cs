@@ -1,9 +1,7 @@
 ﻿using LMC.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Web.Http;
-using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
-using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+
 
 namespace LMC.MenuService.Controllers
 {
@@ -35,6 +33,7 @@ namespace LMC.MenuService.Controllers
         public IActionResult Get(string code)
         {
             var value = _dealProvider.GetDealByCode(code);
+
             if (value == null)
             {
                 return NotFound();
