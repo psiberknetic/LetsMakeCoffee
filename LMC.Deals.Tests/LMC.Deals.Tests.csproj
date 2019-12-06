@@ -14,6 +14,12 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
     <PackageReference Include="SpecFlow" Version="3.1.67" />
     <PackageReference Include="SpecFlow.MsTest" Version="3.1.67" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.67" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LMC.Common\LMC.Common.csproj" />
+    <ProjectReference Include="..\LMCMenuService\LMC.MenuService.csproj" />
   </ItemGroup>
 
 </Project>
