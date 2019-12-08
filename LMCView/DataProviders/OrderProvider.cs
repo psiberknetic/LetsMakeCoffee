@@ -8,6 +8,10 @@ namespace LMC.Web.DataProviders
 {
     public class OrderProvider
     {
+        public OrderProvider()
+        {
+        }
+
         private IEnumerable<Order> GetOrders { get; }
         private IEnumerable<Order> GetActiveOrders { get; }
 
