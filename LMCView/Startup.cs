@@ -1,8 +1,11 @@
+using LMC.Common.Interfaces;
+using LMC.MenuService.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace LMC.Web
 {
@@ -18,12 +21,15 @@ namespace LMC.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlite("Filename=IdentityData.db"));
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            InjectDependencies(services);
+        }
+
+        private void InjectDependencies(IServiceCollection services)
+        {
+            services.AddSingleton<IDealProvider, StaticDealProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
