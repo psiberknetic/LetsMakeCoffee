@@ -10,9 +10,9 @@ namespace LMC.Deals.Tests
     [Binding]
     public class DealListSteps
     {
-        IDealProvider provider;
-        IEnumerable<Deal> deals;
-        Deal deal;
+        private IDealProvider provider;
+        private IEnumerable<Deal> deals;
+        private Deal deal;
 
         [Given(@"A deal list that contains deals")]
         [Given(@"A deal in the list with a code of TenPercentOff")]
@@ -52,6 +52,5 @@ namespace LMC.Deals.Tests
         {
             deal = provider.GetDealByCode(p0);
         }
-
     }
 }
