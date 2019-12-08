@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using LMC.Common;
 using LMC.Common.Interfaces;
-using LMC.MenuService.Providers;
+using LMC.Web.Providers;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 

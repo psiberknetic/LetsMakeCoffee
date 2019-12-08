@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LMC.Common\LMC.Common.csproj" />
-    <ProjectReference Include="..\LMC.Data.Providers\LMC.Data.Providers.csproj" />
+    <ProjectReference Include="..\LMCView\LMC.Web.csproj" />
   </ItemGroup>
 
 </Project>
