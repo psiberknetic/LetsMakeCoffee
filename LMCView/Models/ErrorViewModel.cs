@@ -1,5 +1,3 @@
-using System;
-
 namespace LMCView.Models
 {
     public class ErrorViewModel
