@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LMC.Web.Providers
 {
-    public class CSVDealProvider : IDealProvider
+    public class CsvDealProvider : IDealProvider
     {
         public Deal GetDealByCode(string dealCode)
         {
