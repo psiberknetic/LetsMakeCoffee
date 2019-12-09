@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LMC.Common;
+using LMC.Orders.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
-using LMC.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace LMC.Orders.Controllers
 {
@@ -12,45 +10,47 @@ namespace LMC.Orders.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrderProvider _orderProvider;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrdersController(IOrderProvider orderProvider)
+        public OrdersController(IOrderRepository orderProvider)
         {
-            _orderProvider = orderProvider;
+            _orderRepository = orderProvider;
         }
 
         // GET: api/Orders
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(_orderProvider.GetAllOrders());
+            return Ok(_orderRepository.GetOrders());
         }
 
         // GET: api/Orders/5
         [HttpGet("{id}", Name = "Get")]
         public ActionResult Get(int id)
         {
-            var order = _orderProvider.GetOrder(id);
+            var order = _orderRepository.GetOrder(id);
 
             if (order == null)
             {
                 return NotFound();
             }
 
-            return Ok(_orderProvider.GetOrder(id));
+            return Ok(_orderRepository.GetOrder(id));
         }
 
         // POST: api/Orders
         [HttpPost]
-        public ActionResult Post([FromBody] string value)
+        public ActionResult Post([FromBody] Order value)
         {
+            _orderRepository.AddOrder(value);
             return Ok();
         }
 
         // PUT: api/Orders/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] Order value)
         {
+            _orderRepository.UpdateOrder(value);
             return Ok();
         }
 
@@ -58,6 +58,7 @@ namespace LMC.Orders.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
+            _orderRepository.RemoveOrder(id);
             return Ok();
         }
     }

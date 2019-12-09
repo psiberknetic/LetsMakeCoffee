@@ -1,15 +1,14 @@
 ﻿using LMC.Common;
-using LMC.Common.Interfaces;
-using System;
+using LMC.Orders.Interfaces;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LMC.Orders.Providers
 {
-    public class InMemoryOrderProvider : IOrderProvider
+    public class InMemoryOrderRepository : IOrderRepository
     {
-        private List<Order> _orders = new List<Order>()
+        private ICollection<Order> _orders = new Collection<Order>()
         {
             new Order{Id = 1, Customer = "Nate", Status = OrderStatus.Open}
         };
@@ -19,14 +18,9 @@ namespace LMC.Orders.Providers
             _orders.Add(newOrder);
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<Order> GetOrders()
         {
             return _orders;
-        }
-
-        public IEnumerable<Order> GetOpenOrders()
-        {
-            return _orders.Where(o => o.Status == OrderStatus.Open);
         }
 
         public Order GetOrder(int orderId)
@@ -34,14 +28,15 @@ namespace LMC.Orders.Providers
             return _orders.FirstOrDefault(o => o.Id == orderId);
         }
 
-        public void RemoveOrder(Order order)
+        public void RemoveOrder(int id)
         {
-            _orders.RemoveAll(o => o.Id == order.Id);
+            var orderToRemove = _orders.FirstOrDefault(o => o.Id == id);
+            _orders.Remove(orderToRemove);
         }
 
         public void UpdateOrder(Order order)
         {
-            RemoveOrder(order);
+            RemoveOrder(order.Id);
             AddOrder(order);
         }
     }
