@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LMC.Common\LMC.Common.csproj" />
-    <ProjectReference Include="..\LMC.Data.Providers\LMC.Data.Providers.csproj" />
+    <ProjectReference Include="..\LMCView\LMC.Web.csproj" />
   </ItemGroup>
 
 </Project>

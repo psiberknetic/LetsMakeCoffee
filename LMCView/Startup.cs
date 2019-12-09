@@ -1,11 +1,10 @@
 using LMC.Common.Interfaces;
-using LMC.MenuService.Providers;
+using LMC.Data.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace LMC.Web
 {
