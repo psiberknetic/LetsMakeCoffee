@@ -1,0 +1,44 @@
+﻿@model IEnumerable<LMC.Common.MenuItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Our Menu</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@{
+    var menuGroups = Model.GroupBy(mi => mi.Category, (key, g) => new { CategoryName = key, Items = g.ToList() });
+
+    foreach (var group in menuGroups)
+    {
+        <h4>@group.CategoryName</h4>
+        <table class="table">
+            <tbody>
+                @foreach (var item in group.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+

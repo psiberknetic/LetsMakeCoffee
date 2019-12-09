@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LMC.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using LMC.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LMC.Web.Controllers

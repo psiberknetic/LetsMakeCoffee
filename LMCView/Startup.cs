@@ -29,6 +29,7 @@ namespace LMC.Web
         private void InjectDependencies(IServiceCollection services)
         {
             services.AddSingleton<IDealProvider, StaticDealProvider>();
+            services.AddSingleton<IMenuProvider, StaticMenuProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

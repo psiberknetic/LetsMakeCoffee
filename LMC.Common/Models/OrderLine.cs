@@ -1,6 +1,9 @@
-﻿namespace LMC.Common.Models
+﻿namespace LMC.Common
 {
-    class OrderLine
+    public class OrderLine
     {
+        public MenuItem Item { get; set; }
+        public int Quantity { get; set; }
+        public string Comment { get; set; }
     }
 }
