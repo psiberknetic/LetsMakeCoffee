@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LMC.Common.Models
+namespace LMC.Common
 {
     public class MenuItem
     {

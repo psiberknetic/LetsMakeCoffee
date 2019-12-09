@@ -1,4 +1,4 @@
-﻿namespace LMC.Common.Models
+﻿namespace LMC.Common
 {
     public class OrderLine
     {
