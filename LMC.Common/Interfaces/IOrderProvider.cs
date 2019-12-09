@@ -11,5 +11,11 @@ namespace LMC.Common.Interfaces
         IEnumerable<Order> GetOpenOrders();
 
         Order GetOrder(int orderId);
+
+        void AddOrder(Order newOrder);
+
+        void RemoveOrder(Order order);
+
+        void UpdateOrder(Order order);
     }
 }

@@ -1,3 +1,5 @@
+using LMC.Common.Interfaces;
+using LMC.Orders.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +21,7 @@ namespace LMC.Orders
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IOrderProvider, InMemoryOrderProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
