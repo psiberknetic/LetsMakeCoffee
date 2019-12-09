@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
         <UserSecretsId>aspnet-LMCView-83CD9B94-3621-42A4-97A8-0A78B6B1BE96</UserSecretsId>
-        <SonarQubeExclude>true</SonarQubeExclude>
+        <!--<SonarQubeExclude>true</SonarQubeExclude>-->
     </PropertyGroup>
 
     <ItemGroup>
