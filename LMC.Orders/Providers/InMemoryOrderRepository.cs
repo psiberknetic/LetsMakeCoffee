@@ -9,7 +9,7 @@ namespace LMC.Orders.Providers
 {
     public class InMemoryOrderRepository : IOrderRepository
     {
-        private ICollection<Order> _orders = new Collection<Order>()
+        private readonly ICollection<Order> _orders = new Collection<Order>()
         {
             new Order{Id = 1, Customer = "Paul", Status = OrderStatus.Open,
                 Lines = new []{
@@ -42,9 +42,9 @@ namespace LMC.Orders.Providers
             return _orders;
         }
 
-        public Order GetOrder(int orderId)
+        public Order GetOrder(int id)
         {
-            return _orders.FirstOrDefault(o => o.Id == orderId);
+            return _orders.FirstOrDefault(o => o.Id == id);
         }
 
         public void RemoveOrder(int id)

@@ -1,8 +1,6 @@
 ﻿using LMC.Common;
 using LMC.Orders.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LMC.Orders.Controllers
 {

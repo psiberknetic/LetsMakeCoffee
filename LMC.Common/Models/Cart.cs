@@ -1,6 +1,6 @@
-﻿namespace LMC.Common.Models
+﻿namespace LMC.Common
 {
-    class Cart
+    public class Cart
     {
     }
 }

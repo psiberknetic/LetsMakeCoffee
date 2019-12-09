@@ -1,5 +1,4 @@
-﻿using LMC.Common.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace LMC.Common
 {
