@@ -17,13 +17,13 @@ namespace LMC.Orders.Providers
                     , Quantity = 1}
                 }
             },
-            new Order{Id = 1, Customer = "Steve M", Status = OrderStatus.Open,
+            new Order{Id = 2, Customer = "Steve M", Status = OrderStatus.Open,
                 Lines = new []{
                     new OrderLine{Item = new MenuItem{Id = Guid.NewGuid(), Name="20 oz. Chai Latte", Price = 3.49m},
                     Quantity = 2}
                 }
             },
-            new Order{Id = 1, Customer = "Lori T", Status = OrderStatus.Open,
+            new Order{Id = 3, Customer = "Lori T", Status = OrderStatus.Open,
                 Lines = new []{
                     new OrderLine{Item = new MenuItem{Id = Guid.NewGuid(), Name="20 oz. Coffee Plain", Price = 0.99m},
                     Quantity = 2,

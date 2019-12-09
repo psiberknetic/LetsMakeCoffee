@@ -1,12 +1,12 @@
-﻿using System;
+﻿using LMC.Common;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using LMC.Common;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace LMC.Web.Controllers
 {
@@ -16,30 +16,31 @@ namespace LMC.Web.Controllers
         public async Task<ActionResult> Index()
         {
             var results = await GetAllOrders();
-            return View(results);
+            return View(results.OrderBy(o => o.Id));
         }
 
         // GET: Orders/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var order = await GetOrder(id);
+            return View(order);
         }
 
         // GET: Orders/Create
         public ActionResult Create()
         {
+            var order = new Order();
             return View();
         }
 
         // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Order order)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                await CreateOrder(order);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -48,21 +49,32 @@ namespace LMC.Web.Controllers
             }
         }
 
-        // GET: Orders/Edit/5
-        public ActionResult Edit(int id)
+        private async Task CreateOrder(Order order)
         {
-            return View();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:5001/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            await client.PostAsJsonAsync($"api/Orders", order);
+        }
+
+        // GET: Orders/Edit/5
+        public async Task<ActionResult> Edit(int id)
+        {
+            var order = await GetOrder(id);
+            return View(order);
         }
 
         // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, Order order)
         {
             try
             {
-                // TODO: Add update logic here
-
+                await UpdateOrder(order);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,20 +84,20 @@ namespace LMC.Web.Controllers
         }
 
         // GET: Orders/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var order = await GetOrder(id);
+            return View(order);
         }
 
         // POST: Orders/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                await DeleteOrder(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -97,16 +109,55 @@ namespace LMC.Web.Controllers
         private async Task<IEnumerable<Order>> GetAllOrders()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:5000/");
+            client.BaseAddress = new Uri("https://localhost:5001/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
             var response = await client.GetAsync("api/Orders");
 
-            IEnumerable<Order> orders = await response.Content.ReadAsAsync<IEnumerable<Order>>();
+            var orders = await response.Content.ReadAsAsync<IEnumerable<Order>>();
 
             return orders;
+        }
+
+        private async Task<Order> GetOrder(int Id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:5001/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var response = await client.GetAsync($"api/Orders/{Id}");
+
+            var order = await response.Content.ReadAsAsync<Order>();
+
+            return order;
+        }
+
+
+
+        private async Task DeleteOrder(int Id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:5001/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var response = await client.DeleteAsync($"api/Orders/{Id}");
+        }
+
+        private async Task UpdateOrder(Order order)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:5001/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            await client.PutAsJsonAsync<Order>($"api/Orders/{order.Id}", order);
         }
     }
 }
