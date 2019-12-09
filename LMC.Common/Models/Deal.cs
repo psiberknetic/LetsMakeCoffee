@@ -1,4 +1,6 @@
-﻿namespace LMC.Common
+﻿using System;
+
+namespace LMC.Common
 {
     public class Deal
     {
@@ -15,5 +17,7 @@
         public DealType Type { get; }
         public decimal Value { get; }
         public decimal MinimumOrder { get; }
+
+        public DayOfWeek? ValidOnDay { get; set; }
     }
 }

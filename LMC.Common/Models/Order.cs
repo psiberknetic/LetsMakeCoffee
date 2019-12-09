@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace LMC.Common
 {
@@ -9,8 +10,8 @@ namespace LMC.Common
         public OrderStatus Status { get; set; }
         public IEnumerable<OrderLine> Lines { get; set; }
         public Deal AppliedDeal { get; set; }
-        public decimal SubTotal { get; }
-        public decimal AmountSaved { get; }
-        public decimal Total { get; }
+        public decimal SubTotal => Lines.Sum(l => l.Item.Price * l.Quantity);
+        public decimal AmountSaved => 0.0m;
+        public decimal Total => SubTotal;
     }
 }
