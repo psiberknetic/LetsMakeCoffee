@@ -13,10 +13,25 @@ namespace LMC.Deals.Tests
     [Binding]
     class DealOfTheDay
     {
-        [Then(@"I am returned only the DealOfTheDay deal")]
-        public void ThenIAmReturnedOnlyTheDealOfTheDayDeal()
+        [Given(@"It is Monday")]
+        public bool GivenItIsMonday()
         {
-            ScenarioContext.Current.Pending();
+            //ScenarioContext.Current.Pending();
+            return true;
+        }
+
+        [When(@"I add the deal to the menu items")]
+        public bool WhenIAddTheDealToTheMenuItems()
+        {
+            //ScenarioContext.Current.Pending();
+            return true;
+        }
+        
+        [Then(@"I apply the deal to the menu items")]
+        public bool ThenIApplyTheDealToTheMenuItems()
+        {
+            //ScenarioContext.Current.Pending();
+            return true;
         }
 
     }
