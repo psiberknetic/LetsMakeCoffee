@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
+// Deal of the Day quick Change for PR
 namespace LMC.Web
 {
     public class Program
