@@ -18,3 +18,4 @@ Scenario: Querying for a deal that does not exist returns null
 	Given A list that does not contain a deal called ItsAllFree
 	When I request the deal by the code ItsAllFree
 	Then null is returned
+
